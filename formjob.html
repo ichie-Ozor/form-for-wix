@@ -1,0 +1,92 @@
+<script> import wixData from 'wix-data'; </script>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+    <form id="REGf" method="post">
+            <div>
+                <label for="fName">Full Name</label>
+                <input type="text" id="fName">
+            </div>
+            <div>
+                <label for="email">Emai</label>
+                <input type="text" id="email">
+            </div>
+            <div>
+                <label for="Pnum">Phone number</label>
+                <input type="number" id="Pnum">
+            </div>
+            <div>
+                <label for="address">Address</label>
+                <input type="text" id="address">
+            </div>
+            <div >
+                <button id="btn">submit</button>
+            </div>
+    </form>
+            <div id="btns">
+                <!----output goes here-->
+            </div>
+    
+    <script>
+    
+    var id= (id)=> document.getElementById(id)
+    let name=id('fName'),
+        email=id('email'),
+        pnum=id('Pnum'),
+        address=id('address'),
+        btn=id('btn');
+        
+btn.addEventListener("click", (e)=>{
+e.preventDefault();
+
+if(name.value == "")
+{
+alert ("Name field empty")
+name.focus()
+}
+else if(email.value == "")
+{
+alert ("Email field empty")
+email.focus()
+}
+else if(pnum.value == "")
+{
+alert ("Phone Number field empty")
+pnum.focus()
+}
+else if(address.value == "")
+{
+alert ("Address field empty")
+address.focus()
+}
+else
+{
+let toInsert = {
+  "name": name.value,
+  "email": email.value,
+  "Phone": pnum.value,
+  "address":address.value
+};
+
+console.log(toInsert)
+
+wixData.insert("register", toInsert)
+	.then( (results) => {
+		alert("Data inserted successfully") //see item below
+	} )
+	.catch( (err) => {
+		console.log("Failed" + err)
+	} );
+}
+
+})
+        
+    </script>
+</body>
+</html>
